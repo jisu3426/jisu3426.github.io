@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign_up</title>
+
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+    if(window.localStorage){
+      console.log("이 브라우져는 WebStorage를 사용할 수 있습니다.");
+    }
+    else {
+      console.log("이 브라우져는 WebStorage를 사용할 수 없습니다.");
+    }
+    </script>
+    
+
+    <!-- 배경삽입하기  -->
+    <style>
+      body{
+          /* background-color:palevioletred; */
+          background-image: url('images/background/background3.jpg')
+          
+        
+      }
+      </style>
+</head>
+<body>
+
+  <section id="container">
+        
+    <header id="header">
+      <a href="index.html">
+        <img src="images/logo/homepagelogo.png" width="350"></a>
+        </header>
+    <hr>
+    <nav id="nav">
+
+        <style>
+
+            #nav_menu ul {
+                list-style-type:none;
+                background-color:pink;
+                padding:1px 5px 5px 1px;
+                float:right;
+            }
+            
+            #nav_menu ul li {
+                display:inline;
+                border-left: 1px solid #c0c0c0;
+                padding: 0px 10px 0px 10px;
+                margin: 5px 0px 5px 0px;
+                color:#ffffff;
+                font-size:9pt;
+            }
+            
+            #nav_menu ul li:first-child {
+                border-left: none;
+            }
+            
+            #nav_menu a {
+                text-decoration:none;
+                color:#ffffff
+            }
+            
+            #nav_menu a:hover {
+                color:#D4F4FA;
+                border-bottom:3px solid hotpink;
+            }
+            
+            </style>
+            
+        
+            
+            <div id="nav_menu">
+            <ul>
+            <li><a href="./01_introduce.html">자기소개</a></li>
+            <li><a href="./02_hobby.html">여행</a></li>
+            <li><a href="./03_roadmap.html">개발자로드맵</a></li>
+            <li><a href="./04_sign_up.html">회원가입</a></li>
+            </ul>
+            </div>
+            
+            <h5>*는 필수로 입력해야 하는 항목입니다</h5>
+        <form action = "" id="memberJoin" onsubmit="return memberJoinValiddate();">
+        <table width="940" style="padding:5px 0 5px 0; ">
+           <tr height="2" bgcolor="#FFC8C3"><td colspan="2"></td></tr>
+           <tr>
+
+
+              <th>이름*</th>
+              <td><input type="text" id = "userName" name="userName" required> (2글자이상)</td>
+           </tr>
+        
+           <tr>
+              <th>주민등록번호*</th>
+              <td><input type="text" name="jumin_1" required> -
+             <input type="password" name="jumin_2" required></td>
+            </tr>
+            <tr>
+              <th>아이디*</th>
+              <td>
+              <input type="text" id = "userId" name="userId" required>
+              (4글자 이상)
+              </td>
+            </tr>
+            <tr>
+              <th for="userPwd">비밀번호*</th>
+              <td><input type="password" name="userPwd" id = "userPwd" required></td>
+            </tr>
+            <tr>
+              <th for="userPwdCheck">비밀번호 확인*</th>
+              <td><input type="password" name="userPwdCheck" name="userPwdCheck" required></td>
+            </tr>
+             <tr>
+               <th>이메일</th>
+               <td>
+                 <input type='text' name="email">@
+                 <input type='text' name="email_dns">
+                   <select name="emailaddr">
+                      <option value="">직접입력</option>
+                      <option value="daum.net">daum.net</option>
+                      <option value="empal.com">empal.com</option>
+                      <option value="gmail.com">gmail.com</option>
+                      <option value="hanmail.net">hanmail.net</option>
+                      <option value="msn.com">msn.com</option>
+                      <option value="naver.com">naver.com</option>
+                      <option value="nate.com">nate.com</option>
+                   </select>
+                 </td>
+              </tr>
+              <tr>
+                <th>주소</th>
+                <td>
+                  <label for="meno"></label>
+                  <textarea name="memo" id="memo" 
+                  cols="51" rows="2"></textarea>
+                </td>
+              </tr>
+              <tr>
+              <th>전화번호</th>
+                <td><input type="text"name="cel1"> -
+                    <input type="text" name="cel2_1" title="전화번호"> -
+                    <input type="text" name="cel2_2">
+                 </td>
+             </tr>
+             <tr>
+               <th>핸드폰 번호</th>
+                <td><input type="text"name="tel_h1"> -
+                    <input type="text" name="tel_h2_1"> -
+                    <input type="text" name="tel_h2_2">
+                </td>
+               </tr>
+
+              <tr>
+                <th>정보공개여부</th>
+                <td>
+                <select name='chk_open' size='0'>
+                      <option value=''>선택</option>
+                      <option value='5'>공개</option>
+                      <option valu='6'>비공개</option>
+                  </select>
+                 </td>
+                </tr>
+      
+                <tr height="2" bgcolor="#FFC8C3"><td colspan="2"></td></tr>
+                <tr>
+                  <td colspan="2" align="center"> 
+                    <input type="submit" name="submit" value="회원가입"></input>
+                    <input type="reset" name="reset" value="다시입력" onclick="alert('초기화되었습니다')"></input>
+                 </td>
+                </tr>
+                </table>
+               </td>
+               </tr>
+               </form>
+
+
+     <script>
+
+    userPwdCheck.onblur = function(){
+        if(userPwd.value !== userPwdCheck.value){
+            alert("비밀번호가 일치하지 않습니다");
+        }
+    }
+    
+    memberJoin.onsubmit = memberJoinValidate;
+    function memberJoinValiddate(){
+        //id검사
+        let userIdVal = userId.value.trim();
+        if(userIdVal.length < 4){
+            alert("아이디를 4글자 이상 입력해주세요!");
+            return false;
+        
+           }
+
+           //이름 유효성검사
+           let userNameVal = userName.value.trim();
+           if ($("#userName").val().length <= 1) {
+
+          alert("이름을 두글자 이상 입력해주세요!");
+          return false;
+
+      }
+    }
+    </script>
+
+
+</body>
+</html>
